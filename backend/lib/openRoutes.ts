@@ -1,10 +1,12 @@
 
 
-const options = (userMessage: string) => ( {
-    method: 'POST',
-    headers: {
-        contentType: 'application/json',
-        Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
+const getOpenAIResponse = async (userMessage: string) =>  {
+
+    const options = {
+        method: 'POST',
+        headers: {
+            contentType: 'application/json',
+            Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
     },
 
     body: JSON.stringify({
@@ -19,7 +21,22 @@ const options = (userMessage: string) => ( {
         ]
         
     })
+};
 
-})
+  try{
 
-export default options;
+        const response  = fetch('https://openrouter.ai/api/v1/chat/completions', options)
+
+        const data = await response.then(res => res.json());
+        console.log("Data: ", data.choices[0].message.content)
+        return data.choices[0].message.content;
+
+    } catch (error) {
+        console.error('Error:', error);
+    }
+
+
+}
+
+  
+export default getOpenAIResponse;
