@@ -2,8 +2,12 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import { OpenRouter } from '@openrouter/sdk';
+import options from './options';
 
-const app = express();
+ export const app = express();
+
+
+
 app.use(express.json());
 app.use(cors());
 
@@ -15,34 +19,23 @@ app.get('/',(req: express.Request, res: express.Response) => {
 
 
 
-const apiKey = process.env.OPENROUTER_API_KEY || '';
-const client = new OpenRouter({ apiKey });
+app.post('/test', async (req: express.Request, res: express.Response) => {
 
-if (!apiKey) {
-    console.warn('OPENROUTER_API_KEY is not set. Skipping OpenRouter request.');
-} else {
-    try {
-        const response = await client.chat.send({
-            chatRequest: {
-                model: '~openai/gpt-latest',
-                maxTokens: 100,
-                messages: [
-                    {
-                        role: 'system',
-                        content: 'You are a helpful customer support agent for Spur. Be concise and friendly.',
-                    },
-                ],
-            },
-        });
+    try{
 
-        console.log('OpenRouter response:', response.choices[0]?.message.content);
+        const response  = fetch('https://openrouter.ai/api/v1/chat/completions', options)
+
+        const data = await response.then(res => res.json());
+        console.log("Data: ", data)
+        res.send(data);
 
     } catch (error) {
-        console.error('OpenRouter request failed:', error);
+        console.error('Error:', error);
+        res.status(500).json({ error: 'An error occurred while processing the request.' });
     }
-}
 
 
+})
 
 
 app.listen(PORT, () => {
