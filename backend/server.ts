@@ -1,8 +1,8 @@
 import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
-import { OpenRouter } from '@openrouter/sdk';
-import options from './options';
+import options from './lib/openRoutes';
+import pool from './lib/db';
 
  export const app = express();
 
@@ -16,6 +16,15 @@ const PORT = process.env.PORT || 3000;
 app.get('/',(req: express.Request, res: express.Response) => {
     res.send('Hello, World!');
 })
+
+// test db connection
+pool.query('SELECT NOW()', (err, res) => {
+    if (err) {
+        console.error('DB connection failed:', err);
+    } else {
+        console.log('DB connected successfully at:', res.rows[0].now);
+    }
+});
 
 
 
