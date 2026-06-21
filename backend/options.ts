@@ -1,8 +1,6 @@
-import { maxCost } from "@openrouter/sdk/lib/stop-conditions.js";
 
 
-
-const options = {
+const options = (userMessage: string) => ( {
     method: 'POST',
     headers: {
         contentType: 'application/json',
@@ -14,15 +12,14 @@ const options = {
             model: 'openai/gpt-oss-120b:free',
             max_tokens: 200,
             messages: [
-
                 {
-                role: 'system',
-                content: 'You are a helpful customer support agent for Spur. Be concise and friendly.',
-                }, 
-            ]
+                    role: 'user',
+                    content: userMessage
+                }
+        ]
         
     })
 
-}
+})
 
 export default options;

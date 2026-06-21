@@ -23,11 +23,13 @@ app.post('/test', async (req: express.Request, res: express.Response) => {
 
     try{
 
-        const response  = fetch('https://openrouter.ai/api/v1/chat/completions', options)
+        const {messages} = req.body;
+
+        const response  = fetch('https://openrouter.ai/api/v1/chat/completions', options(messages))
 
         const data = await response.then(res => res.json());
-        console.log("Data: ", data)
-        res.send(data);
+        console.log("Data: ", data.choices[0].message.content)
+        res.send(data.choices[0].message.content);
 
     } catch (error) {
         console.error('Error:', error);
