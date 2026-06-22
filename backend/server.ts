@@ -4,6 +4,8 @@ import cors from 'cors';
 import pool from './lib/db';
 import threadRouter from './routes/thread'
 import chatRouter from './routes/chat'
+import getAllThreads from './routes/getAllThreads'
+import getThreadId from './routes/getThreadId'
 
 
  export const app = express();
@@ -15,6 +17,8 @@ app.use(cors());
 
 app.use('/api', threadRouter)
 app.use('/api',  chatRouter)
+app.use('/api', getAllThreads)
+app.use('/api', getThreadId)
 
 const PORT = process.env.PORT || 3000;
 
