@@ -1,6 +1,6 @@
 
 
-const getOpenAIResponse = async (userMessage: string) =>  {
+const getOpenAIResponse = async (userMessage: string, messages: {role: string, content: string}[]) =>  {
 
     const options = {
         method: 'POST',
@@ -14,11 +14,15 @@ const getOpenAIResponse = async (userMessage: string) =>  {
             model: 'openai/gpt-oss-120b:free',
             max_tokens: 200,
             messages: [
-                {
+             {
+                    role: 'system',
+                    content: 'You are a helpful customer support agent for Spur. Be concise and friendly.'
+            },
+            {
                     role: 'user',
                     content: userMessage
-                }
-        ]
+            }
+]
         
     })
 };
@@ -40,3 +44,5 @@ const getOpenAIResponse = async (userMessage: string) =>  {
 
   
 export default getOpenAIResponse;
+
+  

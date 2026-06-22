@@ -2,7 +2,9 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import pool from './lib/db';
-import chatRouter from './routes/thread'
+import threadRouter from './routes/thread'
+import chatRouter from './routes/chat'
+
 
  export const app = express();
 
@@ -11,7 +13,8 @@ import chatRouter from './routes/thread'
 app.use(express.json());
 app.use(cors());
 
-app.use('/api', chatRouter)
+app.use('/api', threadRouter)
+app.use('/api',  chatRouter)
 
 const PORT = process.env.PORT || 3000;
 
