@@ -1,15 +1,23 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
+import SideBar from './components/sidebar/SideBar'
+import ChatWindow from './components/chatWindow/ChatWindow'
+import { myContext } from './Context'
+
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const providerValues = {};
 
   return (
     <>
-     
+   
+     <div className="main">
+       <myContext.Provider value={providerValues}>
+                  <SideBar/>
+                  <ChatWindow/>
+          </myContext.Provider>
+     </div>
+   
        
     </>
   )

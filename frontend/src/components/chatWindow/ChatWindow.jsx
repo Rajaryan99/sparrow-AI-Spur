@@ -1,8 +1,10 @@
 import React from 'react'
-import './ChatWindow.css'
+import './chatwindow.css'
 
 export default function ChatWindow() {
   return (
-    <div>ChatWindow</div>
+    <>
+    Chatwidow
+    </>
   )
 }
