@@ -1,5 +1,5 @@
 .sidebar{
-    background-color: rgba(255, 255, 255, 0.981);
+    background-color: rgb(243, 244, 251);
     color: #070707ef;
     height: 100vh;
     width: 320px;
@@ -69,7 +69,6 @@
 .logo h2 {
     margin-right: 20px;
     
-    
 }
 
 .history {
@@ -91,6 +90,12 @@
     position: relative;
 
 
+}
+
+.history p {
+    font-size: 14px;
+    color: #646464;
+    margin-left: 15px;
 }
 
 .history li:hover{

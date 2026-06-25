@@ -14,6 +14,7 @@ export default function SideBar() {
      
 
       <ul className='history'>
+        <p>Recent History</p>
         <li> <i class="fa-regular fa-comment"></i> nkdj,</li>
         <li><i class="fa-regular fa-comment"></i> ndkl</li>
         <li><i class="fa-regular fa-comment"></i> lkdj</li>
