@@ -1,12 +1,11 @@
 .sidebar{
-    background-color: rgba(75, 75, 77, 0.981);
-    color: #fffefeef;
+    background-color: rgba(255, 255, 255, 0.981);
+    color: #070707ef;
     height: 100vh;
     width: 320px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;
 
     
     
@@ -21,13 +20,14 @@
     margin: 10px;
     border-radius: 10px;
     border: none;
-    background-color: rgba(159, 159, 162, 0.345);
+    background-color: #5a67d8;
     transition: all 0.3s ease-out;
     color: #fff;
     font-size: large;
     height: 50px;
-    width: 80%;
+    width: 90%;
     margin-bottom: 20px;
+    
     
     
 
@@ -36,17 +36,19 @@
 .newChatBtn:hover {
     cursor: pointer;
     transform: scale(1.03, 1.1);
-    box-shadow: 0 0 15px rgba(255,255,255,0.6);
+    box-shadow: 0 0 15px rgba(34, 33, 33, 0.6);
 
 }
 
 .logo{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     height: 50px;
     width: 100%;
     align-items: center;
     margin-top: 20px;
+    padding-bottom: 8px;
+    border-bottom: solid 1px #161616;
     
     
 }
@@ -54,11 +56,11 @@
 
 
 .icon {
-    height: 25px;
-    width: 25px;
-    background-color: white;
+    height: 35px;
+    width: 50px;
+    background-color: rgba(255, 255, 255, 0.723);
     border-radius: 50%;
-    padding: 8px;
+    padding: 3px;
     margin-left: 20px;
     
   
@@ -66,4 +68,32 @@
 
 .logo h2 {
     margin-right: 20px;
+    
+    
+}
+
+.history {
+
+    margin: 10px;
+    padding: 10px;
+    height: 100%;
+    font-weight: bold;
+
+}
+
+.history li {
+    list-style-type: none;
+    cursor: pointer;
+    padding: 2px 5px;
+    margin-bottom: 0.3rem;
+    font-size: 16px;
+    border: solid 10px transparent;
+    position: relative;
+
+
+}
+
+.history li:hover{
+    background-color: #8892ea4b;
+    border-radius: 15px;
 }

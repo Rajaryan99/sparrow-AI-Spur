@@ -14,10 +14,10 @@ export default function SideBar() {
      
 
       <ul className='history'>
-        <li>nkdj,</li>
-        <li>ndkl</li>
-        <li>lkdj</li>
-        <li>nclkd</li>
+        <li> <i class="fa-regular fa-comment"></i> nkdj,</li>
+        <li><i class="fa-regular fa-comment"></i> ndkl</li>
+        <li><i class="fa-regular fa-comment"></i> lkdj</li>
+        <li><i class="fa-regular fa-comment"></i> nclkd</li>
       </ul>
 
  <button className='newChatBtn'>
