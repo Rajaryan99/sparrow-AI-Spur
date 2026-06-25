@@ -17,9 +17,9 @@ export default function ChatWindow() {
       <div className="chatInput">
           <div className='userInput'>
             <input type="text" placeholder='How can i help you' />
-            <div><i class="fa-solid fa-paper-plane"></i></div>
+            <div className='sendBtn'><i class="fa-solid fa-paper-plane"></i></div>
           </div>
-          <p>
+          <p className='info'>
 Welcome to Sparrow, your AI-powered assistant for SPUR. Ask any question, and I'll be happy to help.          </p>
       </div>
 
