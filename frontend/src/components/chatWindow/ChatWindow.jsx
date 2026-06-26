@@ -1,13 +1,15 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import './chatwindow.css'
 import Chat from '../chat/Chat'
 import { myContext } from '../../Context'
-
+import {PacmanLoader} from 'react-spinners'
 export default function ChatWindow() {
 
   const {prompt, setPrompt, reply, setReply, currThreadId} = useContext(myContext)
+  const [loading, setLoading] = useState(false)
 
   const getReply = async () => {
+    setLoading(true)
 
     console.log("Message", prompt, "threadId", currThreadId)
     const options = {
@@ -19,6 +21,7 @@ export default function ChatWindow() {
         message: prompt,
         threadId: currThreadId
       })
+     
     }
 
     try {
@@ -26,10 +29,12 @@ export default function ChatWindow() {
       const response = await fetch("http://localhost:3000/api/chat", options)
       const res = await response.json()
       console.log(res)
+      setReply(res.reply)
       
     } catch (error) {
       console.error(error)
     }
+    setLoading(false)
   }
 
   return (
@@ -42,6 +47,10 @@ export default function ChatWindow() {
 
     <Chat></Chat>
 
+    <PacmanLoader loading={loading} >
+
+    </PacmanLoader>
+
       <div className="chatInput">
           <div className='userInput'>
             <input 
@@ -49,6 +58,7 @@ export default function ChatWindow() {
                 value={prompt} 
                 onChange={(e) => setPrompt(e.target.value)}
                 placeholder='How can i help you' 
+                onKeyDown={(e) => e.key === 'Enter' ? getReply(): ''}
               />
             <div className='sendBtn' onClick={getReply}><i className="fa-solid fa-paper-plane"></i></div>
           </div>
