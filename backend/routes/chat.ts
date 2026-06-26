@@ -9,14 +9,21 @@ router.post('/chat', async (req: express.Request, res: express.Response) => {
 
     try {
 
-        const {threadId, message} = req.body;
+        let {threadId, message} = req.body;
+
+        if (!threadId) {
+                let threadResult = await pool.query(
+                'INSERT INTO threads DEFAULT VALUES RETURNING id'
+            );
+      threadId = threadResult.rows[0].id;
+    }
 
         await pool.query(
             'INSERT INTO messages (thread_id, role, content)    VALUES ($1, $2, $3)',
             [threadId, 'user', message]
         );
 
-        const history = await pool.query(
+        let history = await pool.query(
             'SELECT role, content FROM messages WHERE thread_id = $1 ORDER BY timestamp ASC',
             [threadId]
         )
@@ -32,7 +39,7 @@ router.post('/chat', async (req: express.Request, res: express.Response) => {
             [threadId, 'assistant', aiReply]
         )
 
-        res.json({reply: aiReply})
+        res.json({reply: aiReply, threadId})
 
     } catch (error) {
         console.log('chat error', error)
