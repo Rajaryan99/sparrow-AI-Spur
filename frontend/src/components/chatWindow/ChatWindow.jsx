@@ -24,7 +24,8 @@ export default function ChatWindow() {
     try {
 
       const response = await fetch("http://localhost:3000/api/chat", options)
-      console.log(response)
+      const res = await response.json()
+      console.log(res)
       
     } catch (error) {
       console.error(error)

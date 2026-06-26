@@ -10,7 +10,7 @@ function App() {
 
   const [prompt, setPrompt] = useState("")
   const [reply, setReply] = useState(null)
-  const [currThreadId, setCurrThreadId] = useState(uuidv4())
+  const [currThreadId, setCurrThreadId] = useState(null)
 
   const providerValues = {
     prompt, setPrompt,
