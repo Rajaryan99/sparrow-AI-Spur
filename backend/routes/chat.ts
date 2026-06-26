@@ -32,6 +32,12 @@ router.post('/chat', async (req: express.Request, res: express.Response) => {
 // send to openrouter
         
             const aiReply = await getOpenAIResponse(JSON.stringify(history.rows), message);
+
+
+                if (!aiReply) {
+                    return res.status(503).json({ error: "AI service unavailable, try again" });
+                }
+
             
         //save AI replay to DB
         await pool.query(

@@ -5,7 +5,7 @@ const getOpenAIResponse = async (userMessage: string, messages: {role: string, c
     const options = {
         method: 'POST',
         headers: {
-            contentType: 'application/json',
+            "Content-Type": 'application/json',
             Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
     },
 
@@ -29,11 +29,18 @@ const getOpenAIResponse = async (userMessage: string, messages: {role: string, c
 
   try{
 
-        const response  = fetch('https://openrouter.ai/api/v1/chat/completions', options)
+        const response  = await fetch('https://openrouter.ai/api/v1/chat/completions', options)
 
-        const data = await response.then(res => res.json());
-        console.log("Data: ", data.choices[0].message.content)
-        return data.choices[0].message.content;
+       const data = await response.json()
+
+
+       if(data.error){
+        console.log("OpenRouter error", data.error.message);
+        return null
+        
+       }
+        console.log("Data: ", data);                 // log full data first to debug
+    return data.choices[0].message.content;
 
     } catch (error) {
         console.error('Error:', error);
