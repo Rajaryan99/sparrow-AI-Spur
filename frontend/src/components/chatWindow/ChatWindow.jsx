@@ -1,11 +1,11 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './chatwindow.css'
 import Chat from '../chat/Chat'
 import { myContext } from '../../Context'
 import {PacmanLoader} from 'react-spinners'
 export default function ChatWindow() {
 
-  const {prompt, setPrompt, reply, setReply, currThreadId} = useContext(myContext)
+  const {prompt, setPrompt, prevChats, setPrevChats, reply, setReply, currThreadId} = useContext(myContext)
   const [loading, setLoading] = useState(false)
 
   const getReply = async () => {
@@ -28,7 +28,7 @@ export default function ChatWindow() {
 
       const response = await fetch("http://localhost:3000/api/chat", options)
       const res = await response.json()
-      console.log(res)
+      console.log("frontend got: ", res)
       setReply(res.reply)
       
     } catch (error) {
@@ -36,6 +36,24 @@ export default function ChatWindow() {
     }
     setLoading(false)
   }
+
+
+  useEffect(() => {
+
+    if(prompt && reply){
+      setPrevChats(prevChats => {
+       return [...prevChats, {
+          role: 'user',
+          content: prompt
+        }, {
+          role: 'assistant',
+          content: reply
+        }]
+      }) 
+    }
+
+    setPrompt("")
+  }, [reply])
 
   return (
     <>

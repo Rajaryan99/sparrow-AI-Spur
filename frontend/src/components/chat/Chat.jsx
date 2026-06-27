@@ -4,18 +4,37 @@ import { myContext } from '../../Context'
 
 export default function Chat() {
 
-  const {reply} = useContext(myContext)
+
+
+  const {reply, prevChats, setPrevChats, newChat, setNewChat} = useContext(myContext)
   return (
+    <>
+    {newChat && <h1>Ask your query???</h1>}
     <div className='chatBox'>
 
-      <div className="promot">
-        <p>hello</p>
+      {
+        prevChats?.map((chat, idx) => 
+          <div className={chat.role === "user"? "prompt": "AIReply"} key={idx}>
+                  {
+                    chat.role === "user"? 
+                    <p className='userMessage'>{chat.content}</p>: 
+                    <p className='AImessage'>{chat.content}</p>
+                  }
+          </div>
+
+        )
+      }
+
+
+      {/* <div className="prompt">
+        <p className='userMessage'>User Message</p>
       </div>
 
       <div className="AIReply">
-        <p>hey</p>
-      </div>
+        <p className='AImessage'>AI Message</p>
+      </div> */}
 
     </div>
+    </>
   )
 }

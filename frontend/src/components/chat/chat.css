@@ -1,0 +1,36 @@
+.chatBox{
+    width: 600px;
+    max-width: 700px;
+    overflow-y: scroll;
+    padding: 8rem;
+}
+
+.prompt{
+
+    display: flex;
+    justify-content:flex-end ;
+        font-size: 0.9rem;
+
+
+}
+
+.userMessage{
+    background-color: #5965d67c;
+    padding: 10px 20px;
+    border-radius: 14px;
+    margin-left: 15rem;
+    max-width: 500px;
+    width: fit-content;
+
+}
+
+.AIReply{
+
+    text-align: left;
+    font-size: 0.9rem;
+
+}
+
+.AImessage{
+
+}
