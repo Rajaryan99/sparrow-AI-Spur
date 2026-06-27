@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import './chat.css'
 import { myContext } from '../../Context'
+import ReactMarkdown from 'react-markdown'
 
 export default function Chat() {
 
@@ -18,7 +19,7 @@ export default function Chat() {
                   {
                     chat.role === "user"? 
                     <p className='userMessage'>{chat.content}</p>: 
-                    <p className='AImessage'>{chat.content}</p>
+                    <ReactMarkdown>{chat.content}</ReactMarkdown>
                   }
           </div>
 
