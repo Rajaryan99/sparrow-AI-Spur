@@ -11,7 +11,7 @@ const getOpenAIResponse = async (userMessage: string, messages: {role: string, c
 
     body: JSON.stringify({
         
-            model: 'openai/gpt-oss-120b:free',
+            model: 'openrouter/free',
             max_tokens: 200,
             messages: [
              {
@@ -39,7 +39,7 @@ const getOpenAIResponse = async (userMessage: string, messages: {role: string, c
         return null
         
        }
-        console.log("Data: ", data);                 // log full data first to debug
+        console.log("Data: ", data.choices[0].message.content);                 // log full data first to debug
     return data.choices[0].message.content;
 
     } catch (error) {
