@@ -11,6 +11,20 @@ router.post('/chat', async (req: express.Request, res: express.Response) => {
 
         let {threadId, message} = req.body;
 
+        if(!message || typeof message !== 'string'){
+            return res.status(400).json({error: "Message is required"})
+        }
+
+        if(message.trim() === ""){
+            return res.status(400).json({ error: 'Message cannot be empty' });
+        }
+
+         if (message.length > 1000) {
+      return res.status(400).json({ error: 'Message too long. Max 1000 characters.' });
+    }
+
+    message = message.trim(); 
+
         if (!threadId) {
                 let threadResult = await pool.query(
                 'INSERT INTO threads (title) VALUES ($1) RETURNING id',
