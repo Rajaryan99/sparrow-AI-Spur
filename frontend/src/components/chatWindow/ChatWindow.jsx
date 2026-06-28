@@ -9,6 +9,13 @@ export default function ChatWindow() {
   const [loading, setLoading] = useState(false)
 
   const getReply = async () => {
+
+      if (!prompt || prompt.trim() === '') return;  
+  if (prompt.length > 1000) {
+    alert('Message too long. Max 1000 characters.');
+    return;
+  }
+
     setLoading(true)
 
     console.log("Message", prompt, "threadId", currThreadId)
@@ -77,9 +84,10 @@ export default function ChatWindow() {
                 value={prompt} 
                 onChange={(e) => setPrompt(e.target.value)}
                 placeholder='How can i help you' 
-                onKeyDown={(e) => e.key === 'Enter' ? getReply(): ''}
+                onKeyDown={(e) => e.key === 'Enter' && !loading  ? getReply(): ''}
+                disabled={loading}
               />
-            <div className='sendBtn' onClick={getReply}><i className="fa-solid fa-paper-plane"></i></div>
+            <div className='sendBtn' onClick={!loading? getReply : undefined}><i className="fa-solid fa-paper-plane"></i></div>
           </div>
           <p className='info'>
 Welcome to Sparrow, your AI-powered assistant for SPUR. Ask any question, and I'll be happy to help.          </p>
