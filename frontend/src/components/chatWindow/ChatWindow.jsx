@@ -5,7 +5,7 @@ import { myContext } from '../../Context'
 import {PacmanLoader} from 'react-spinners'
 export default function ChatWindow() {
 
-  const {prompt, setPrompt, prevChats, setPrevChats, reply, setReply, currThreadId} = useContext(myContext)
+  const {prompt, setPrompt, isNewReply, setIsNewReply, prevChats, setPrevChats, reply, setReply, currThreadId} = useContext(myContext)
   const [loading, setLoading] = useState(false)
 
   const getReply = async () => {
@@ -29,6 +29,7 @@ export default function ChatWindow() {
       const response = await fetch("http://localhost:3000/api/chat", options)
       const res = await response.json()
       console.log("frontend got: ", res)
+      setIsNewReply(true);
       setReply(res.reply)
       
     } catch (error) {

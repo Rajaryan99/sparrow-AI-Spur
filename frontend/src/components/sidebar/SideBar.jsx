@@ -17,6 +17,18 @@ export default function SideBar() {
     }
   }
 
+  const loadThread = async (threadId) => {
+    try {
+      setCurrThreadId(threadId)
+      const response = await fetch(`http://localhost:3000/api/${threadId}/messages`)
+      const messages = await response.json()
+      setPrevChats(messages)
+      setNewChat(false)
+    } catch (error) {
+      console.error('Load thread error:', error)
+    }
+  }
+
   const deleteThread = async (e, threadId) => {
     e.stopPropagation()
     try {
@@ -53,7 +65,7 @@ export default function SideBar() {
           <li
             key={thread.id}
             className={`thread-item ${currThreadId === thread.id ? 'active' : ''}`}
-            onClick={() => setCurrThreadId(thread.id)}
+            onClick={() => loadThread(thread.id)}
           >
             <i className="fa-regular fa-comment"></i>
             <span>{thread.title || "New Chat"}</span>

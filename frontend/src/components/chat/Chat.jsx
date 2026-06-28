@@ -7,28 +7,39 @@ export default function Chat() {
 
 
 
-  const {reply, prevChats, setPrevChats, newChat, setNewChat} = useContext(myContext)
+  const {reply, prevChats, setPrevChats, newChat, setNewChat, isNewReply, setIsNewReply} = useContext(myContext)
   const [latestReply, setLatestReply] = useState(null)
 
 
-  useEffect(() => {
+useEffect(() => {
+  if (!prevChats?.length) return;
 
-    if(!prevChats?.length) return;
+  const lastMessage = prevChats[prevChats.length - 1];
+  if (!lastMessage || lastMessage.role !== 'assistant') return;
+  if (!lastMessage.content) return;
 
-    const content = reply.split(" ");
+  // only animate if it's a fresh AI reply
+  if (!isNewReply) {
+    setLatestReply(lastMessage.content);  // just show it instantly
+    return;
+  }
 
-    let idx = 0;
-    const intervel = setInterval(() => {
-      setLatestReply(content.slice(0, idx + 1).join(" "))
+  const content = lastMessage.content.split(" ");
+  let idx = 0;
+  setLatestReply("");
 
-      idx++;
-      if(idx >= content.length) clearInterval(intervel)
+  const interval = setInterval(() => {
+    setLatestReply(content.slice(0, idx + 1).join(" "))
+    idx++;
+    if (idx >= content.length) {
+      clearInterval(interval)
+      setIsNewReply(false)  // reset flag
+    }
+  }, 40)
 
-    }, 40)
+  return () => clearInterval(interval)
 
-    return () => clearInterval(intervel)
-
-  }, [prevChats, reply])
+}, [prevChats])
 
   return (
     <>
