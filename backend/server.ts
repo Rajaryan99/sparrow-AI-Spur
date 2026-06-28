@@ -6,6 +6,7 @@ import threadRouter from './routes/thread'
 import chatRouter from './routes/chat'
 import getAllThreads from './routes/getAllThreads'
 import getThreadId from './routes/getThreadId'
+import deleteThread from './routes/deleteThread'
 
 
  export const app = express();
@@ -19,6 +20,7 @@ app.use('/api', threadRouter)
 app.use('/api',  chatRouter)
 app.use('/api', getAllThreads)
 app.use('/api', getThreadId)
+app.use('/api', deleteThread)
 
 const PORT = process.env.PORT || 3000;
 

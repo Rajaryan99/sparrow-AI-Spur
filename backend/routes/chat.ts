@@ -13,7 +13,8 @@ router.post('/chat', async (req: express.Request, res: express.Response) => {
 
         if (!threadId) {
                 let threadResult = await pool.query(
-                'INSERT INTO threads DEFAULT VALUES RETURNING id'
+                'INSERT INTO threads (title) VALUES ($1) RETURNING id',
+                [message.slice(0, 50)]
             );
       threadId = threadResult.rows[0].id;
     }
