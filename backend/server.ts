@@ -14,7 +14,10 @@ import deleteThread from './routes/deleteThread'
 
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: ['https://sparrow-ai-spur.vercel.app', 'http://localhost:5173'],
+  methods: ['GET', 'POST', 'DELETE'],
+}));
 
 app.use('/api', threadRouter)
 app.use('/api',  chatRouter)
