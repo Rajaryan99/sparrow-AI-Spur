@@ -6,6 +6,9 @@ An AI-powered customer support chat widget built as a hiring assignment for Spur
 **Backend API:** https://sparrow-ai-spur-backend.onrender.com  
 **GitHub:** https://github.com/Rajaryan99/sparrow-AI-Spur
 
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/19ab5f36-fff6-4a67-b00e-56ca9f6828c7" />
+
+
 ---
 
 ## Tech Stack
