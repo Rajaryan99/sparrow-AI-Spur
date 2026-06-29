@@ -196,3 +196,11 @@ The system prompt includes:
 - Null/undefined LLM replies handled gracefully
 
 ---
+
+## Trade-offs & If I Had More Time
+
+- **Auth** — proper session management instead of relying on threadId in request body
+- **Rate limiting** — prevent API abuse with express-rate-limit
+- **Docker** — containerize backend + DB for easier local setup
+- **Better mobile UI** — sidebar collapses on mobile, full responsive layout
+]
