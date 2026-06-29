@@ -15,7 +15,12 @@ import deleteThread from './routes/deleteThread'
 
 app.use(express.json());
 app.use(cors({
-  origin: ['https://sparrow-ai-spur.vercel.app', 'http://localhost:5173'],
+  origin: [
+    'https://sparrow-ai-spur.vercel.app',
+    'https://sparrow-ai-spur-git-main-singhrajaryan66-gmailcoms-projects.vercel.app',
+    'https://sparrow-ai-spur-fb0him298-singhrajaryan66-gmailcoms-projects.vercel.app/',
+    'http://localhost:5173'
+  ],
   methods: ['GET', 'POST', 'DELETE'],
 }));
 
