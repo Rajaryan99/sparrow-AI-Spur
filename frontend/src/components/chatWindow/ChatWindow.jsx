@@ -33,7 +33,7 @@ export default function ChatWindow() {
 
     try {
 
-      const response = await fetch("http://localhost:3000/api/chat", options)
+      const response = await fetch("https://sparrow-ai-spur-backend.onrender.com/api/chat", options)
       const res = await response.json()
       console.log("frontend got: ", res)
       setIsNewReply(true);
